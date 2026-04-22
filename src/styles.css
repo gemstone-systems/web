@@ -1,17 +1,75 @@
-
 @import "tailwindcss";
+@import "tw-shimmer";
+
+@import "@fontsource-variable/hanken-grotesk";
+@import "@fontsource/amiri";
+@import "@fontsource/maple-mono";
+@import "@fontsource/maple-mono/400-italic.css";
+
+@theme {
+    --font-sans: "Hanken Grotesk Variable", sans-serif;
+    --font-serif: "Amiri", serif;
+    --font-mono: "Maple Mono", monospace;
+
+    /* bases */
+    --color-crust: oklch(0.1899 0.0284 296.74);
+    --color-mantle: oklch(0.2087 0.0316 295);
+    --color-base: oklch(0.2356 0.0403 296.32);
+
+    --color-surface0: oklch(0.2892 0.0614 295.88);
+    --color-surface1: oklch(0.324 0.0616 294.54);
+    --color-surface2: oklch(0.4076 0.0602 295.08);
+
+    --color-overlay0: oklch(0.4606 0.0568 294.55);
+    --color-overlay1: oklch(0.547 0.0592 295.24);
+    --color-overlay2: oklch(0.6526 0.0611 294.71);
+
+    --color-subtext0: oklch(0.7469 0.0605 294.72);
+    --color-subtext1: oklch(0.83 0.0604 295.71);
+    --color-text: oklch(0.8958 0.0551 295.58);
+
+    /* accents */
+    --color-lavender: oklch(0.8572 0.0719 285.66);
+    --color-blue: oklch(0.6974 0.1652 249.87);
+    --color-sapphire: oklch(0.74 0.1395 249.97);
+    --color-sky: oklch(0.8397 0.1268 215.16);
+    --color-teal: oklch(0.9019 0.1518 179.79);
+    --color-green: oklch(0.8261 0.2032 155.02);
+    --color-yellow: oklch(0.8563 0.144 82.46);
+    --color-peach: oklch(0.7914 0.1674 69);
+    --color-maroon: oklch(0.7172 0.1771 20.2);
+    --color-red: oklch(0.6227 0.2163 22.29);
+    --color-mauve: oklch(0.6483 0.2294 303.25);
+    --color-pink: oklch(0.7991 0.123 0.07);
+    --color-flamingo: oklch(0.8628 0.0783 359.64);
+    --color-rosewater: oklch(0.9282 0.0393 0.09);
+
+    /* /* signals */
+    */
+    /* --color-accent: oklch(0.73 0.1597 304); */
+    /* --color-accent-alt: oklch(0.8412 0.1327 321.54); */
+    /* --color-positive: oklch(0.8261 0.2032 155.02); */
+    /* --color-negative: oklch(0.7285 0.1482 5.88); */
+}
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body,
 #app {
-  min-height: 100%;
+    min-height: 100%;
 }
 
 body {
-  margin: 0;
+    @apply m-0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+@layer base {
+    ::selection {
+        @apply bg-accent/40 text-text;
+    }
+}
