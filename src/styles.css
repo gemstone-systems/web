@@ -44,12 +44,11 @@
     --color-flamingo: oklch(0.8628 0.0783 359.64);
     --color-rosewater: oklch(0.9282 0.0393 0.09);
 
-    /* /* signals */
-    */
-    /* --color-accent: oklch(0.73 0.1597 304); */
-    /* --color-accent-alt: oklch(0.8412 0.1327 321.54); */
-    /* --color-positive: oklch(0.8261 0.2032 155.02); */
-    /* --color-negative: oklch(0.7285 0.1482 5.88); */
+    /* signals */
+    --color-accent: var(--color-mauve);
+    --color-accent-alt: var(--color-teal);
+    --color-positive: var(--color-green);
+    --color-negative: var(--color-red);
 }
 
 * {
