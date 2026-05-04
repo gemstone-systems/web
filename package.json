@@ -15,6 +15,7 @@
         "check": "prettier --write . && eslint --fix"
     },
     "dependencies": {
+        "@atproto/oauth-client-browser": "^0.3.42",
         "@fontsource-variable/hanken-grotesk": "^5.2.8",
         "@fontsource/amiri": "^5.2.8",
         "@fontsource/maple-mono": "^5.2.6",
