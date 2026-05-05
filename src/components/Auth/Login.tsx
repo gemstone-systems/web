@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export const SignIn = () => {
+export const Login = () => {
     const [handle, setHandle] = useState("");
     const isValidHandle = handle.includes(".");
     const client = useOAuthClient();

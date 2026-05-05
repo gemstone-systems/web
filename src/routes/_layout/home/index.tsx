@@ -3,6 +3,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_layout/home/")({
     component: RouteComponent,
+    head: () => ({
+        meta: [{ title: "Gemstone - Home" }],
+    }),
 });
 
 function RouteComponent() {

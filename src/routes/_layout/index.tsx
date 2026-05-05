@@ -1,8 +1,14 @@
+import { NavBarUnauthed } from "@/components/Nav/NavBarUnauthed";
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useOAuth } from "@/lib/oauth";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_layout/")({ component: Home });
+export const Route = createFileRoute("/_layout/")({
+    component: Home,
+    head: () => ({
+        meta: [{ title: "Gemstone - The better workspace stack." }],
+    }),
+});
 
 function Home() {
     const { session, client } = useOAuth();
@@ -14,12 +20,9 @@ function Home() {
 
     return (
         <BaseLayout>
+            <NavBarUnauthed />
             <div className="flex w-screen justify-center pt-8 flex-col items-center">
-                <h1 className="text-4xl font-bold">
-                    Welcome to TanStack Start
-                </h1>
-                <p className="mt-4 text-lg">log in :)</p>
-                <Link to="/login">Log In</Link>
+                <p>The better workspace stack.</p>
             </div>
         </BaseLayout>
     );

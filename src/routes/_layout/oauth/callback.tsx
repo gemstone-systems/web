@@ -5,6 +5,9 @@ import { Loading } from "@/components/Misc/Loading";
 
 export const Route = createFileRoute("/_layout/oauth/callback")({
     component: RouteComponent,
+        head: () => ({
+        meta: [{ title: "Authenticating..." }],
+    }),
 });
 
 function RouteComponent() {

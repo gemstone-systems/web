@@ -4,6 +4,9 @@ import { BaseLayout } from "@/layouts/BaseLayout";
 
 export const Route = createFileRoute("/_layout")({
     component: RouteComponent,
+    head: () => ({
+        meta: [{ title: "Gemstone" }],
+    }),
 });
 
 function RouteComponent() {
