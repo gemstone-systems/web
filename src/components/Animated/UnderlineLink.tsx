@@ -7,12 +7,14 @@ export const UnderlineLink = ({
     className = "text-accent",
     underlineColor = "bg-accent",
     target = "_self",
+    rel
 }: {
     href: string;
     children: ReactNode;
     className?: string;
     underlineColor?: string;
     target?: "_blank" | "_self" | "_parent" | "_top" | "_unfencedTop";
+    rel?: string;
 }) => {
     return (
         <motion.a
@@ -21,6 +23,7 @@ export const UnderlineLink = ({
             initial="initial"
             whileHover="hover"
             target={target}
+            rel={rel}
         >
             {children}
             <motion.span

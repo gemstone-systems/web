@@ -58,6 +58,8 @@ export const Login = () => {
                     href="https://atproto.com"
                     underlineColor="bg-blue"
                     className="text-sky"
+                    target="_blank"
+                    rel="noreferrer"
                 >
                     Atmosphere
                 </UnderlineLink>

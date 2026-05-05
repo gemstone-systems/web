@@ -49,6 +49,24 @@
     --color-accent-alt: var(--color-teal);
     --color-positive: var(--color-green);
     --color-negative: var(--color-red);
+
+    /* animations */
+    --animate-drift: drift 10s linear infinite;
+}
+
+@keyframes drift {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-64px, 64px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-drift {
+        animation-play-state: paused;
+    }
 }
 
 * {

@@ -16,7 +16,7 @@ export const __DEV__loopbackOAuthMetadata = {
     application_type: "web",
     dpop_bound_access_tokens: true,
     subject_type: "public",
-    client_name: "Strand Localhost",
+    client_name: "Gemstone Web Localhost",
 };
 
 export const DEFAULT_STALE_TIME = 5 * 60 * 1000;
