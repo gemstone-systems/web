@@ -1,6 +1,5 @@
 import { Button } from "@/components/Animated/Button";
 import { UnderlineLink } from "@/components/Animated/UnderlineLink";
-import { SvgSpinnersPulseMultiple } from "@/components/Icons/SvgSpinnersPulseMultiple";
 import { Loading } from "@/components/Misc/Loading";
 import { useOAuthClient } from "@/lib/oauth";
 import {
