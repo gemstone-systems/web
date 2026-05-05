@@ -18,7 +18,14 @@ function RouteComponent() {
         }
     }, [session, navigate]);
 
-    if (!session) return <Loading />;
+    if (!session)
+        return (
+            <div>
+                <Loading />
+                <p>Wow your oauth callback is taking a while isn't it?</p>
+                <p>omg easter egg??</p>
+            </div>
+        );
 
     return (
         <div>
