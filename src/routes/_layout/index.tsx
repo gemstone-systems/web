@@ -1,7 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/_layout/")({ component: Home });
 
 function Home() {
     return (
