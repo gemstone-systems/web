@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutLoginRouteImport } from './routes/_layout/login'
+import { Route as LayoutHomeIndexRouteImport } from './routes/_layout/home/index'
 import { Route as LayoutOauthCallbackRouteImport } from './routes/_layout/oauth/callback'
 
 const LayoutRoute = LayoutRouteImport.update({
@@ -28,6 +29,11 @@ const LayoutLoginRoute = LayoutLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutHomeIndexRoute = LayoutHomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => LayoutRoute,
+} as any)
 const LayoutOauthCallbackRoute = LayoutOauthCallbackRouteImport.update({
   id: '/oauth/callback',
   path: '/oauth/callback',
@@ -38,11 +44,13 @@ export interface FileRoutesByFullPath {
   '/': typeof LayoutIndexRoute
   '/login': typeof LayoutLoginRoute
   '/oauth/callback': typeof LayoutOauthCallbackRoute
+  '/home/': typeof LayoutHomeIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LayoutLoginRoute
   '/': typeof LayoutIndexRoute
   '/oauth/callback': typeof LayoutOauthCallbackRoute
+  '/home': typeof LayoutHomeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,18 +58,20 @@ export interface FileRoutesById {
   '/_layout/login': typeof LayoutLoginRoute
   '/_layout/': typeof LayoutIndexRoute
   '/_layout/oauth/callback': typeof LayoutOauthCallbackRoute
+  '/_layout/home/': typeof LayoutHomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/oauth/callback'
+  fullPaths: '/' | '/login' | '/oauth/callback' | '/home/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/oauth/callback'
+  to: '/login' | '/' | '/oauth/callback' | '/home'
   id:
     | '__root__'
     | '/_layout'
     | '/_layout/login'
     | '/_layout/'
     | '/_layout/oauth/callback'
+    | '/_layout/home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -91,6 +101,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutLoginRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/home/': {
+      id: '/_layout/home/'
+      path: '/home'
+      fullPath: '/home/'
+      preLoaderRoute: typeof LayoutHomeIndexRouteImport
+      parentRoute: typeof LayoutRoute
+    }
     '/_layout/oauth/callback': {
       id: '/_layout/oauth/callback'
       path: '/oauth/callback'
@@ -105,12 +122,14 @@ interface LayoutRouteChildren {
   LayoutLoginRoute: typeof LayoutLoginRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
   LayoutOauthCallbackRoute: typeof LayoutOauthCallbackRoute
+  LayoutHomeIndexRoute: typeof LayoutHomeIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutLoginRoute: LayoutLoginRoute,
   LayoutIndexRoute: LayoutIndexRoute,
   LayoutOauthCallbackRoute: LayoutOauthCallbackRoute,
+  LayoutHomeIndexRoute: LayoutHomeIndexRoute,
 }
 
 const LayoutRouteWithChildren =

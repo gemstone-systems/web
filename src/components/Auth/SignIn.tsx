@@ -45,7 +45,7 @@ export const SignIn = () => {
     const loginIcon = <LucideLogIn height={16} width={16} />;
 
     return (
-        <div className="bg-surface0 border-surface1 m-36 flex max-w-1/4 flex-col items-center rounded-md border px-6 py-4">
+        <div className="bg-surface0 border-surface1 m-36 flex max-w-1/4 flex-col items-center rounded-lg border px-6 py-4">
             <LucideCircleUserRound
                 height={24}
                 width={24}
@@ -57,7 +57,7 @@ export const SignIn = () => {
                 <UnderlineLink
                     href="https://atproto.com"
                     underlineColor="bg-blue"
-                    className="text-blue"
+                    className="text-sky"
                 >
                     Atmosphere
                 </UnderlineLink>
@@ -71,7 +71,7 @@ export const SignIn = () => {
                             height={14}
                             width={14}
                         />
-                        <div className="bg-surface1 pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-lg px-3 py-2 text-sm opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
+                        <div className="bg-surface1 pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-xl px-3 py-2 text-sm opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
                             If you have a Bluesky, Blacksky, Tangled, or any
                             other ATProto account, you can use that account's
                             handle.
@@ -79,7 +79,7 @@ export const SignIn = () => {
                         </div>
                     </div>
                 </div>
-                <div className="border-surface1 group has-focus:border-accent flex items-center overflow-hidden rounded-sm border transition-all">
+                <div className="border-surface1 group has-focus:border-accent flex items-center overflow-hidden rounded-md border transition-all">
                     <LucideAtSign
                         className="text-subtext group-has-focus:text-accent h-full w-max px-2 transition-all"
                         height={16}
@@ -90,6 +90,9 @@ export const SignIn = () => {
                         placeholder="arenee.gmstn.systems"
                         className="peer w-full rounded-tr-sm rounded-br-sm p-1 py-2 pl-2 transition-all focus:outline-0"
                         onChange={(e) => setHandle(e.target.value)}
+                        onKeyDown={(e) =>
+                            e.key === "Enter" && handleOAuthContinue()
+                        }
                     />
                 </div>
             </div>
@@ -97,7 +100,7 @@ export const SignIn = () => {
                 label="Continue"
                 icon={loginIcon}
                 iconPosition="right"
-                className="hover:bg-accent/90 hover:text-crust hover:disabled:bg-surface1 hover:disabled:text-text bg-accent text-crust disabled:bg-surface1 disabled:text-text m-2 mt-6 mb-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm p-2 transition-all disabled:cursor-not-allowed"
+                className="hover:bg-accent/90 hover:text-crust hover:disabled:bg-surface1 hover:disabled:text-text bg-accent text-crust disabled:bg-surface1 disabled:text-text m-2 mt-6 mb-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md p-2 transition-all disabled:cursor-not-allowed"
                 disabled={!isValidHandle}
                 labelClassName=""
                 iconClassName=""

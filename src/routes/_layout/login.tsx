@@ -15,7 +15,7 @@ function RouteComponent() {
     }
 
     return (
-        <div className="border-overlay0 flex w-screen justify-center border-t pt-8">
+        <div className="flex w-screen justify-center pt-8">
             <SignIn />
         </div>
     );
