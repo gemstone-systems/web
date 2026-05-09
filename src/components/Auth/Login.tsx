@@ -89,7 +89,7 @@ export const Login = () => {
                     />
                     <div className="bg-surface1 group-has-focus:bg-accent w-px self-stretch transition-all" />
                     <input
-                        placeholder="aurora.gmstn.systems"
+                        placeholder="arene.gmstn.systems"
                         className="peer w-full rounded-tr-sm rounded-br-sm p-1 py-2 pl-2 transition-all focus:outline-0"
                         onChange={(e) => setHandle(e.target.value)}
                         onKeyDown={(e) =>
