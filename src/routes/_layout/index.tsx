@@ -1,4 +1,3 @@
-import { NavBarUnauthed } from "@/components/Nav/NavBarUnauthed";
 import { useOAuth } from "@/lib/oauth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
@@ -28,7 +27,6 @@ function Home() {
 
     return (
         <>
-            <NavBarUnauthed />
             <div className="flex w-full flex-1 flex-col items-center px-6 pt-24 pb-16 bg-mantle">
                 <h1 className="text-text text-center text-5xl font-bold tracking-tight">
                     The better workspace stack.
