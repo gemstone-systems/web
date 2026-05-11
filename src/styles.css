@@ -48,7 +48,7 @@
     --color-accent: var(--color-mauve);
     --color-accent-alt: var(--color-teal);
     --color-positive: var(--color-green);
-    --color-negative: var(--color-red);
+    --color-negative: var(--color-maroon);
 
     /* animations */
     --animate-drift: drift 10s linear infinite;

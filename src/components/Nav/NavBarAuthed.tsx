@@ -22,7 +22,7 @@ export const NavBarAuthed = () => {
         "https://pds.goldweaver.systems/xrpc/com.atproto.sync.getBlob?did=did:plc:nrri2qphzxtjdnptjrpvg4wn&cid=bafkreige5f6fkwi4edszg2eso2ldz3g3gitksprszd6dalu6qeoxmrsn3y";
 
     return (
-        <div className="bg-base flex w-full items-center justify-between p-3">
+        <div className="bg-base flex flex-col w-full items-center justify-between p-3 overflow-auto">
             <div className="flex max-h-12 items-center gap-1">
                 {/* <UnderlineIconRouterLink */}
                 {/*     to="/" */}
