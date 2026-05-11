@@ -22,8 +22,8 @@ export const NavBarAuthed = () => {
         "https://pds.goldweaver.systems/xrpc/com.atproto.sync.getBlob?did=did:plc:nrri2qphzxtjdnptjrpvg4wn&cid=bafkreige5f6fkwi4edszg2eso2ldz3g3gitksprszd6dalu6qeoxmrsn3y";
 
     return (
-        <div className="bg-base flex flex-col w-full items-center justify-between p-3 overflow-auto">
-            <div className="flex max-h-12 items-center gap-1">
+        <div className="bg-base flex flex-col w-full items-center justify-between p-3 overflow-auto h-full">
+            <div className="flex items-center gap-1 flex-1">
                 {/* <UnderlineIconRouterLink */}
                 {/*     to="/" */}
                 {/*     label="Strand" */}
@@ -33,8 +33,9 @@ export const NavBarAuthed = () => {
                 {/*     underlineClassName="bg-text" */}
                 {/*     className="pl-2 text-lg font-semibold" */}
                 {/* /> */}
+                woke
             </div>
-            <div className="mr-3 flex max-h-12 items-center gap-1">
+            <div className="flex basis-1/8 shrink-0 items-center gap-1">
                 <div>
                     {/* {isAvatarLoading ? ( */}
                     {/*     <div className="flex min-w-10 h-12 items-center"> */}
@@ -70,7 +71,7 @@ const AvatarWithDropdown = ({ uri }: { uri: string | undefined }) => {
     return (
         <DropdownModal
             buttonComponent={AvatarButton}
-            className="bg-surface0 mt-1 flex w-48 flex-col rounded-sm"
+            className="bg-surface0 flex w-48 flex-col rounded-sm"
         >
             {/* <UnderlineIconRouterLink */}
             {/*     to={`/${handle}`} */}

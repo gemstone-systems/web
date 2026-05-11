@@ -7,7 +7,7 @@ export const BaseLayoutAuthed = ({ children }: { children: ReactNode }) => {
 
     return (
         <Group className="flex min-w-screen min-h-screen" defaultLayout={defaultLayout} onLayoutChanged={onLayoutChanged}>
-            <Panel defaultSize="25%" minSize="15%" maxSize="35%">
+            <Panel defaultSize="20%" minSize="15%" maxSize="30%">
                 <NavBarAuthed />
             </Panel>
             <Separator className="bg-overlay0 w-px data-[separator=hover]:bg-overlay1  transition-all"/> 
