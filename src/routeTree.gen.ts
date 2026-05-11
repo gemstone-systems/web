@@ -12,8 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutLoginRouteImport } from './routes/_layout/login'
-import { Route as LayoutHomeIndexRouteImport } from './routes/_layout/home/index'
+import { Route as LayoutAuthedRouteImport } from './routes/_layout/_authed'
 import { Route as LayoutOauthCallbackRouteImport } from './routes/_layout/oauth/callback'
+import { Route as LayoutAuthedHomeIndexRouteImport } from './routes/_layout/_authed/home/index'
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
@@ -29,9 +30,8 @@ const LayoutLoginRoute = LayoutLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutHomeIndexRoute = LayoutHomeIndexRouteImport.update({
-  id: '/home/',
-  path: '/home/',
+const LayoutAuthedRoute = LayoutAuthedRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutOauthCallbackRoute = LayoutOauthCallbackRouteImport.update({
@@ -39,39 +39,46 @@ const LayoutOauthCallbackRoute = LayoutOauthCallbackRouteImport.update({
   path: '/oauth/callback',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutAuthedHomeIndexRoute = LayoutAuthedHomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => LayoutAuthedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LayoutIndexRoute
   '/login': typeof LayoutLoginRoute
   '/oauth/callback': typeof LayoutOauthCallbackRoute
-  '/home/': typeof LayoutHomeIndexRoute
+  '/home/': typeof LayoutAuthedHomeIndexRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof LayoutLoginRoute
   '/': typeof LayoutIndexRoute
+  '/login': typeof LayoutLoginRoute
   '/oauth/callback': typeof LayoutOauthCallbackRoute
-  '/home': typeof LayoutHomeIndexRoute
+  '/home': typeof LayoutAuthedHomeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_layout': typeof LayoutRouteWithChildren
+  '/_layout/_authed': typeof LayoutAuthedRouteWithChildren
   '/_layout/login': typeof LayoutLoginRoute
   '/_layout/': typeof LayoutIndexRoute
   '/_layout/oauth/callback': typeof LayoutOauthCallbackRoute
-  '/_layout/home/': typeof LayoutHomeIndexRoute
+  '/_layout/_authed/home/': typeof LayoutAuthedHomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/login' | '/oauth/callback' | '/home/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/oauth/callback' | '/home'
+  to: '/' | '/login' | '/oauth/callback' | '/home'
   id:
     | '__root__'
     | '/_layout'
+    | '/_layout/_authed'
     | '/_layout/login'
     | '/_layout/'
     | '/_layout/oauth/callback'
-    | '/_layout/home/'
+    | '/_layout/_authed/home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -101,11 +108,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutLoginRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/home/': {
-      id: '/_layout/home/'
-      path: '/home'
-      fullPath: '/home/'
-      preLoaderRoute: typeof LayoutHomeIndexRouteImport
+    '/_layout/_authed': {
+      id: '/_layout/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutAuthedRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/oauth/callback': {
@@ -115,21 +122,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutOauthCallbackRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/_authed/home/': {
+      id: '/_layout/_authed/home/'
+      path: '/home'
+      fullPath: '/home/'
+      preLoaderRoute: typeof LayoutAuthedHomeIndexRouteImport
+      parentRoute: typeof LayoutAuthedRoute
+    }
   }
 }
 
+interface LayoutAuthedRouteChildren {
+  LayoutAuthedHomeIndexRoute: typeof LayoutAuthedHomeIndexRoute
+}
+
+const LayoutAuthedRouteChildren: LayoutAuthedRouteChildren = {
+  LayoutAuthedHomeIndexRoute: LayoutAuthedHomeIndexRoute,
+}
+
+const LayoutAuthedRouteWithChildren = LayoutAuthedRoute._addFileChildren(
+  LayoutAuthedRouteChildren,
+)
+
 interface LayoutRouteChildren {
+  LayoutAuthedRoute: typeof LayoutAuthedRouteWithChildren
   LayoutLoginRoute: typeof LayoutLoginRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
   LayoutOauthCallbackRoute: typeof LayoutOauthCallbackRoute
-  LayoutHomeIndexRoute: typeof LayoutHomeIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutAuthedRoute: LayoutAuthedRouteWithChildren,
   LayoutLoginRoute: LayoutLoginRoute,
   LayoutIndexRoute: LayoutIndexRoute,
   LayoutOauthCallbackRoute: LayoutOauthCallbackRoute,
-  LayoutHomeIndexRoute: LayoutHomeIndexRoute,
 }
 
 const LayoutRouteWithChildren =
