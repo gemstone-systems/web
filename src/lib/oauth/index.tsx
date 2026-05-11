@@ -7,10 +7,8 @@ import {
     useState,
 } from "react";
 import type { ReactNode } from "react";
-import {
-    BrowserOAuthClient,
-    type OAuthSession,
-} from "@atproto/oauth-client-browser";
+import { BrowserOAuthClient } from "@atproto/oauth-client-browser";
+import type { OAuthSession } from "@atproto/oauth-client-browser";
 import {
     HANDLE_RESOLVER_URL,
     __DEV__loopbackOAuthMetadata,

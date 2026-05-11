@@ -28,6 +28,7 @@ export const Login = () => {
 
                 console.log("Never executed");
             } catch (err) {
+                console.error(err)
                 console.log(
                     'The user aborted the authorization process by navigating "back"',
                 );

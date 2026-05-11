@@ -1,12 +1,11 @@
-import { DriftingCirclesBackground } from "@/components/Animated/DriftingCirclesBackground";
 import { NavBarUnauthed } from "@/components/Nav/NavBarUnauthed";
 import { useOAuth } from "@/lib/oauth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
     LucideArrowRight,
-    LucideMessageSquare,
-    LucideFolderKanban,
     LucideBookOpen,
+    LucideFolderKanban,
+    LucideMessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/Animated/Button";
 import type { ReactNode } from "react";
