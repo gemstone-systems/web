@@ -8,5 +8,5 @@ export const Route = createFileRoute("/_layout/_authed/home/")({
 });
 
 function RouteComponent() {
-    return <div>Hello "/_layout/home/"!</div>;
+    return <div>Heh</div>
 }

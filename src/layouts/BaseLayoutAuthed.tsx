@@ -1,10 +1,10 @@
-import { NavBar } from "@/components/Nav/NavBar";
+import { NavBarAuthed } from "@/components/Nav/NavBarAuthed";
 import type { ReactNode } from "react";
 
-export const BaseLayout = ({ children }: { children: ReactNode }) => {
+export const BaseLayoutAuthed = ({ children }: { children: ReactNode }) => {
     return (
         <>
-            <NavBar />
+            <NavBarAuthed />
             <div className="w-screen flex flex-col min-h-screen">
                 {children}
             </div>
