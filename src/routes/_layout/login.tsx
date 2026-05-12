@@ -1,5 +1,5 @@
 import { Login } from "@/components/Auth/Login";
-import { useOAuth } from "@/lib/oauth";
+import { useOAuth } from "@/lib/providers/oauth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 

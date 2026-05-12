@@ -1,7 +1,7 @@
 import { Client } from "@atcute/client";
 import { createContext, useContext, useMemo } from "react";
 import type { ReactNode } from "react";
-import { useOAuth } from "@/lib/oauth";
+import { useOAuth } from "@/lib/providers/oauth";
 import { } from "@atcute/atproto";
 
 const XrpcContext = createContext<{

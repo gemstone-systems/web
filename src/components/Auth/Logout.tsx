@@ -1,7 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import { LucideLogOut } from "lucide-react";
 import { Button } from "@/components/Animated/Button";
-import { useOAuth } from "@/lib/oauth";
+import { useOAuth } from "@/lib/providers/oauth";
 
 export const LogoutButton = () => {
     const { signOut } = useOAuth();

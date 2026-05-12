@@ -1,9 +1,9 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 import { BaseLayoutUnauthed } from "@/layouts/BaseLayoutUnauthed";
-import { useOAuth } from "@/lib/oauth";
 import { BaseLayoutAuthed } from "@/layouts/BaseLayoutAuthed";
 import { Loading } from "@/components/Misc/Loading";
+import { useOAuth } from "@/lib/providers/oauth";
 
 export const Route = createFileRoute("/_layout")({
     component: RouteComponent,

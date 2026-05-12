@@ -1,4 +1,3 @@
-import { useOAuth } from "@/lib/oauth";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
     LucideArrowRight,
@@ -10,6 +9,7 @@ import { Button } from "@/components/Animated/Button";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { UnderlineLink } from "@/components/Animated/UnderlineLink";
+import { useOAuth } from "@/lib/providers/oauth";
 
 export const Route = createFileRoute("/_layout/")({
     component: Home,

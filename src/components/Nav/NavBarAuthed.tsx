@@ -3,7 +3,7 @@ import { DropdownModal } from "@/components/Containers/Dropdown";
 import { Divider } from "@/components/Misc/Divider";
 import { Loading } from "@/components/Misc/Loading";
 import { Avatar } from "@/components/Profile/Avatar";
-import { useOAuth } from "@/lib/oauth";
+import { useOAuth } from "@/lib/providers/oauth";
 import { LucideCircleUserRound } from "lucide-react";
 
 export const NavBarAuthed = () => {

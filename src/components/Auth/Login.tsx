@@ -1,7 +1,6 @@
 import { Button } from "@/components/Animated/Button";
 import { UnderlineLink } from "@/components/Animated/UnderlineLink";
 import { Loading } from "@/components/Misc/Loading";
-import { useOAuth } from "@/lib/oauth";
 import {
     LucideAtSign,
     LucideCircleUserRound,
@@ -10,6 +9,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import logger from "@/lib/logger";
+import { useOAuth } from "@/lib/providers/oauth";
 
 export const Login = () => {
     const [handle, setHandle] = useState("");

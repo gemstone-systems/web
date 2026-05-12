@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { useOAuthSession } from "@/lib/oauth";
 import { Loading } from "@/components/Misc/Loading";
+import { useOAuthSession } from "@/lib/providers/oauth";
 
 export const Route = createFileRoute("/_layout/oauth/callback")({
     component: RouteComponent,

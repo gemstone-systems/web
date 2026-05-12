@@ -1,5 +1,5 @@
-import { OAuthProvider } from "@/lib/oauth";
-import { XrpcProvider } from "@/lib/xrpc";
+import { OAuthProvider } from "@/lib/providers/oauth";
+import { XrpcProvider } from "@/lib/providers/xrpc";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 

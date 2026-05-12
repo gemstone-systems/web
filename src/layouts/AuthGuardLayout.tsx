@@ -1,8 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useOAuth } from "@/lib/oauth";
 import { Loading } from "@/components/Misc/Loading";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
+import { useOAuth } from "@/lib/providers/oauth";
 
 export const AuthGuardLayout = ({ children }: { children: ReactNode }) => {
     const { session, isInitialised } = useOAuth();
