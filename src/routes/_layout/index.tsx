@@ -7,6 +7,7 @@ import {
     LucideMessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/Animated/Button";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { UnderlineLink } from "@/components/Animated/UnderlineLink";
 
@@ -21,9 +22,11 @@ function Home() {
     const { session, client } = useOAuth();
     const navigate = useNavigate();
 
-    if (client && session) {
-        navigate({ to: "/home" });
-    }
+    useEffect(() => {
+        if (client && session) {
+            navigate({ to: "/home" });
+        }
+    }, [client, session]);
 
     return (
         <>
