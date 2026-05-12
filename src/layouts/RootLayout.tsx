@@ -1,4 +1,5 @@
 import { OAuthProvider } from "@/lib/oauth";
+import { XrpcProvider } from "@/lib/xrpc";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
 
@@ -8,7 +9,9 @@ export const RootLayout = ({ children }: { children: ReactNode }) => {
     return (
         <QueryClientProvider client={queryClient}>
             <OAuthProvider>
-                <div className="bg-base text-text">{children}</div>
+                <XrpcProvider>
+                    <div className="bg-base text-text">{children}</div>
+                </XrpcProvider>
             </OAuthProvider>
         </QueryClientProvider>
     );
