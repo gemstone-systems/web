@@ -9,6 +9,7 @@ import {
     LucideLogIn,
 } from "lucide-react";
 import { useState } from "react";
+import logger from "@/lib/logger";
 
 export const Login = () => {
     const [handle, setHandle] = useState("");
@@ -27,20 +28,20 @@ export const Login = () => {
                     signal: new AbortController().signal,
                 });
 
-                console.log("Never executed");
+                logger.debug("Never executed");
             } catch (err) {
-                console.error(err);
-                console.log(
+                logger.error(err);
+                logger.warn(
                     'The user aborted the authorization process by navigating "back"',
                 );
             }
         };
 
         doOAuth().catch((e: unknown) => {
-            console.error(
+            logger.error(
                 "Something went wrong while trying to do OAuth handover.",
             );
-            console.error(e);
+            logger.error(e);
         });
     };
 

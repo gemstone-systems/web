@@ -13,6 +13,7 @@ import {
     HANDLE_RESOLVER_URL,
     __DEV__loopbackOAuthMetadata,
 } from "@/lib/consts";
+import logger from "@/lib/logger";
 
 const OAuthContext = createContext<{
     isInitialised: boolean;
@@ -83,11 +84,11 @@ export const OAuthProvider = ({ children }: { children: ReactNode }) => {
             if (oAuthInit) {
                 const { session: restoredSess, state: authState } = oAuthInit;
                 if (authState != null) {
-                    console.log(
+                    logger.success(
                         `${restoredSess.sub} was successfully authenticated (state: ${authState})`,
                     );
                 } else {
-                    console.log(
+                    logger.info(
                         `${restoredSess.sub} was restored (last active session)`,
                     );
                 }
@@ -101,8 +102,8 @@ export const OAuthProvider = ({ children }: { children: ReactNode }) => {
         setHandle(handleFromStorage);
 
         initOAuth().catch((e: unknown) => {
-            console.error("Could not init OAuth client");
-            console.error(e);
+            logger.error("Could not init OAuth client");
+            logger.error(e);
         });
     }, []);
 
