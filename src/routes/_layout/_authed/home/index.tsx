@@ -1,3 +1,6 @@
+import { Loading } from "@/components/Misc/Loading";
+import { HomeLayout } from "@/layouts/HomeLayout";
+import { useXrpcClient } from "@/lib/providers/xrpc";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_layout/_authed/home/")({
@@ -8,5 +11,13 @@ export const Route = createFileRoute("/_layout/_authed/home/")({
 });
 
 function RouteComponent() {
-    return <div>Heh</div>
+    const { client } = useXrpcClient();
+
+    if (!client) return <Loading />;
+
+    return (
+        <HomeLayout>
+            <div>Heh</div>
+        </HomeLayout>
+    );
 }
