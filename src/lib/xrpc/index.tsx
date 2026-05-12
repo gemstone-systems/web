@@ -2,8 +2,12 @@ import { Client } from "@atcute/client";
 import { createContext, useContext, useMemo } from "react";
 import type { ReactNode } from "react";
 import { useOAuth } from "@/lib/oauth";
+import { } from "@atcute/atproto";
 
-const XrpcContext = createContext<{ client: Client | null; isInitialised: boolean } | null>(null);
+const XrpcContext = createContext<{
+    client: Client | null;
+    isInitialised: boolean;
+} | null>(null);
 
 export const XrpcProvider = ({ children }: { children: ReactNode }) => {
     const { session, isInitialised } = useOAuth();
@@ -14,9 +18,7 @@ export const XrpcProvider = ({ children }: { children: ReactNode }) => {
     }, [session]);
 
     return (
-        <XrpcContext value={{ client, isInitialised }}>
-            {children}
-        </XrpcContext>
+        <XrpcContext value={{ client, isInitialised }}>{children}</XrpcContext>
     );
 };
 
