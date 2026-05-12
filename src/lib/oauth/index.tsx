@@ -15,6 +15,7 @@ import {
 } from "@/lib/consts";
 
 const OAuthContext = createContext<{
+    isInitialised: boolean;
     client: BrowserOAuthClient | null;
     session: OAuthSession | null;
     callbackHandler: (arg0: URLSearchParams) => void;
@@ -24,6 +25,7 @@ const OAuthContext = createContext<{
 } | null>(null);
 
 export const OAuthProvider = ({ children }: { children: ReactNode }) => {
+    const [isInitialised, setIsInitialised] = useState(false);
     const [client, setClient] = useState<BrowserOAuthClient | null>(null);
     const [session, setSession] = useState<OAuthSession | null>(null);
     const [handle, setHandle] = useState<string | null>(null);
@@ -91,6 +93,8 @@ export const OAuthProvider = ({ children }: { children: ReactNode }) => {
                 }
                 setSession(restoredSess);
             }
+
+            setIsInitialised(true);
         };
 
         const handleFromStorage = localStorage.getItem("handle");
@@ -103,6 +107,7 @@ export const OAuthProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     const contextValue = {
+        isInitialised,
         client,
         session,
         callbackHandler,

@@ -19,14 +19,14 @@ export const Route = createFileRoute("/_layout/")({
 });
 
 function Home() {
-    const { session, client } = useOAuth();
+    const { session, isInitialised } = useOAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (client && session) {
+        if (isInitialised && session) {
             navigate({ to: "/home" });
         }
-    }, [client, session]);
+    }, [isInitialised, session]);
 
     return (
         <>

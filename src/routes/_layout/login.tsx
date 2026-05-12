@@ -11,14 +11,14 @@ export const Route = createFileRoute("/_layout/login")({
 });
 
 function RouteComponent() {
-    const { session, client } = useOAuth();
+    const { session, isInitialised } = useOAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (client && session) {
+        if (isInitialised && session) {
             navigate({ to: "/" });
         }
-    }, [client, session]);
+    }, [isInitialised, session]);
 
     return (
         <div className="flex w-screen justify-center pt-8">

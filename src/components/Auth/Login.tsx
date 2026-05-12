@@ -1,7 +1,7 @@
 import { Button } from "@/components/Animated/Button";
 import { UnderlineLink } from "@/components/Animated/UnderlineLink";
 import { Loading } from "@/components/Misc/Loading";
-import { useOAuthClient } from "@/lib/oauth";
+import { useOAuth } from "@/lib/oauth";
 import {
     LucideAtSign,
     LucideCircleUserRound,
@@ -13,13 +13,14 @@ import { useState } from "react";
 export const Login = () => {
     const [handle, setHandle] = useState("");
     const isValidHandle = handle.includes(".");
-    const client = useOAuthClient();
+    const { client, isInitialised } = useOAuth();
 
-    if (!client) return <Loading />;
+    if (!isInitialised) return <Loading />;
 
     const handleOAuthContinue = () => {
         localStorage.setItem("handle", handle);
         const doOAuth = async () => {
+            if (!client) return;
             try {
                 await client.signIn(handle, {
                     ui_locales: "en",

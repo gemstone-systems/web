@@ -3,6 +3,7 @@ import { Outlet, createFileRoute } from "@tanstack/react-router";
 import { BaseLayoutUnauthed } from "@/layouts/BaseLayoutUnauthed";
 import { useOAuth } from "@/lib/oauth";
 import { BaseLayoutAuthed } from "@/layouts/BaseLayoutAuthed";
+import { Loading } from "@/components/Misc/Loading";
 
 export const Route = createFileRoute("/_layout")({
     component: RouteComponent,
@@ -26,9 +27,11 @@ export const Route = createFileRoute("/_layout")({
 });
 
 function RouteComponent() {
-    const { session, client } = useOAuth();
+    const { session, isInitialised } = useOAuth();
 
-    if (client && session) {
+    if (!isInitialised) return <Loading />;
+
+    if (session) {
         return (
             <BaseLayoutAuthed>
                 <Outlet />
