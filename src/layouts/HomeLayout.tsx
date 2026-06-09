@@ -12,7 +12,7 @@ export const HomeLayout = ({ children }: { children: ReactNode }) => {
             </Panel>
             <Separator className="bg-overlay0 w-px data-[separator=hover]:bg-overlay1  transition-all"/> 
             <Panel>
-                <div className="flex flex-col ">{children}</div>
+                <div className="flex h-full flex-col">{children}</div>
             </Panel>
         </Group>
     );
