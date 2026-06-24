@@ -1,6 +1,6 @@
 const __DEV__oAuthCallbackUrl = "http://127.0.0.1:3000/oauth/callback";
 
-const oAuthScopes = ["atproto", "blob:*/*"];
+const oAuthScopes = ["atproto", "repo:systems.gmstn.chat.message", "blob:*/*"];
 
 const oAuthScopesString = oAuthScopes
     .reduce((prev, curr) => `${prev} ${curr}`)
@@ -20,6 +20,29 @@ export const __DEV__loopbackOAuthMetadata = {
 };
 
 export const DEFAULT_STALE_TIME = 5 * 60 * 1000;
+
+/**
+ * Base URL of the geode shard for chat history + the live socket. Geode
+ * defaults to :3000, which the web dev server already occupies, so run geode on
+ * another port locally (or set VITE_GEODE_URL).
+ */
+export const __DEV__geodeUrl =
+    import.meta.env.VITE_GEODE_URL ?? "http://127.0.0.1:3001";
+
+/**
+ * TODO: remove
+ */
+export const __DEV__workspaceUri =
+    "at://did:plc:qxichs7jsycphrsmbujwqbfb/systems.gmstn.chat.workspace/3mmqwafkgq722";
+
+/**
+ * TODO: remove
+ */
+export const __DEV__channelRef = {
+    $type: "com.atproto.repo.strongRef",
+    uri: "at://did:plc:qxichs7jsycphrsmbujwqbfb/systems.gmstn.chat.channel/3mmqwb2c4k722",
+    cid: "bafyreicyap4xwlo3rf2ccxogmtsbidsot6dvcjsiz3euaxrx2csbnjrnzq",
+} as const;
 
 export const CONSTELLATION_URL = new URL(
     "https://constellation.microcosm.blue/",
