@@ -1,51 +1,36 @@
-import { createMessage } from "@/lib/api/create-message";
-import { useOAuth } from "@/lib/providers/oauth";
-import { useXrpcClient } from "@/lib/providers/xrpc";
-import { useMutation } from "@tanstack/react-query";
 import { LucideSendHorizontal } from "lucide-react";
 import { useState } from "react";
 import type { KeyboardEvent } from "react";
 
-export type SentMessage = { uri: string; cid: string };
-
 export const MessageInput = ({
-    onSent,
+    onSend,
+    isPending = false,
+    error,
 }: {
-    onSent?: (result: SentMessage, content: string) => void;
+    /** Send the message. Resolves on success (input clears), rejects on failure. */
+    onSend: (content: string) => Promise<unknown>;
+    isPending?: boolean;
+    error?: unknown;
 }) => {
-    const { client } = useXrpcClient();
-    const { session } = useOAuth();
     const [content, setContent] = useState("");
 
-    const { mutate, isPending, error } = useMutation({
-        mutationFn: async (text: string) => {
-            if (!client || !session) {
-                throw new Error("Not signed in.");
-            }
-            return await createMessage({
-                client,
-                repo: session.did,
-                content: text,
-            });
-        },
-        onSuccess: (result, text) => {
-            setContent("");
-            onSent?.(result, text);
-        },
-    });
-
     const trimmed = content.trim();
-    const canSend = trimmed.length > 0 && !isPending && !!client && !!session;
+    const canSend = trimmed.length > 0 && !isPending;
 
-    const send = () => {
+    const send = async () => {
         if (!canSend) return;
-        mutate(trimmed);
+        try {
+            await onSend(trimmed);
+            setContent("");
+        } catch {
+            // Keep the text so the user can retry; `error` surfaces the reason.
+        }
     };
 
     const onKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            send();
+            void send();
         }
     };
 
@@ -63,7 +48,7 @@ export const MessageInput = ({
                 />
                 <button
                     type="button"
-                    onClick={send}
+                    onClick={() => void send()}
                     disabled={!canSend}
                     aria-label="Send message"
                     className="text-accent hover:bg-surface1 grid size-8 shrink-0 place-items-center rounded-md transition-all disabled:cursor-not-allowed disabled:opacity-40"
@@ -73,7 +58,9 @@ export const MessageInput = ({
             </div>
             {error ? (
                 <p className="text-negative text-sm">
-                    {error instanceof Error ? error.message : "Failed to send message."}
+                    {error instanceof Error
+                        ? error.message
+                        : "Failed to send message."}
                 </p>
             ) : null}
         </div>

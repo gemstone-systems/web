@@ -1,10 +1,9 @@
 import { MessageInput } from "@/components/Chat/MessageInput";
-import type { SentMessage } from "@/components/Chat/MessageInput";
 import { Loading } from "@/components/Misc/Loading";
 import { HomeLayout } from "@/layouts/HomeLayout";
-import { useXrpcClient } from "@/lib/providers/xrpc";
+import { __DEV__channelRef } from "@/lib/consts";
+import { useChannelMessages } from "@/lib/hooks/useChannelMessages";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 
 export const Route = createFileRoute("/_layout/_authed/home/")({
     component: RouteComponent,
@@ -13,13 +12,11 @@ export const Route = createFileRoute("/_layout/_authed/home/")({
     }),
 });
 
-type DisplayedMessage = SentMessage & { content: string };
-
 function RouteComponent() {
-    const { client } = useXrpcClient();
-    const [messages, setMessages] = useState<Array<DisplayedMessage>>([]);
+    const { messages, send, isSending, sendError, isLoading } =
+        useChannelMessages(__DEV__channelRef.uri);
 
-    if (!client) return <Loading />;
+    if (isLoading) return <Loading />;
 
     return (
         <HomeLayout>
@@ -33,22 +30,23 @@ function RouteComponent() {
                         messages.map((message) => (
                             <div
                                 key={message.uri}
-                                className="bg-surface0 text-text max-w-2xl rounded-lg px-3 py-2"
+                                className="bg-surface0 text-text max-w-2xl rounded-lg px-3 py-2 data-[pending=true]:opacity-60"
+                                data-pending={message.status === "pending"}
                             >
                                 <p className="break-words whitespace-pre-wrap">
                                     {message.content}
                                 </p>
                                 <p className="text-overlay1 mt-1 text-xs break-all">
-                                    {message.uri}
+                                    {message.did} · {message.status}
                                 </p>
                             </div>
                         ))
                     )}
                 </div>
                 <MessageInput
-                    onSent={(result, content) =>
-                        setMessages((prev) => [...prev, { ...result, content }])
-                    }
+                    onSend={send}
+                    isPending={isSending}
+                    error={sendError}
                 />
             </div>
         </HomeLayout>

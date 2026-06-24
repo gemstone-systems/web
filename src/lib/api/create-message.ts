@@ -1,7 +1,10 @@
 import type { Client } from "@atcute/client";
 import type { Did } from "@atproto/oauth-client-browser";
 import { __DEV__channelRef } from "@/lib/consts";
-import { CHAT_MESSAGE_NSID, chatMessageRecordSchema } from "@/lib/lexicons/chat";
+import {
+    CHAT_MESSAGE_NSID,
+    chatMessageRecordSchema,
+} from "@/lib/lexicons/chat";
 
 export const createMessage = async ({
     client,
@@ -33,5 +36,12 @@ export const createMessage = async ({
         throw new Error(res.data.message ?? res.data.error);
     }
 
-    return res.data;
+    // `createdAt` is generated here, so hand it back for the optimistic entry
+    // and the echo payload to keep their ordering consistent with the durable
+    // copy that arrives later over the firehose.
+    return {
+        uri: res.data.uri,
+        cid: res.data.cid,
+        createdAt: record.createdAt,
+    };
 };
