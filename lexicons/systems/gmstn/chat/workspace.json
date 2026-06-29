@@ -1,0 +1,49 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.chat.workspace",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "maxGraphemes": 100,
+            "minGraphemes": 1
+          },
+          "descriptionLong": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 1,
+            "maxGraphemes": 500,
+            "minGraphemes": 1
+          },
+          "descriptionShort": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "maxGraphemes": 200,
+            "minGraphemes": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "host": {
+            "type": "string",
+            "format": "at-uri"
+          }
+        },
+        "required": [
+          "name",
+          "createdAt",
+          "host"
+        ]
+      }
+    }
+  }
+}

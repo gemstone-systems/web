@@ -1,0 +1,82 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.api.chat.getGeodeWorkspaces",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "Gets the list of chat workspaces associated with a Geode. Does not require auth.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": "Domain of the Geode in question, e.g. \"geode.gmstn.systems\""
+          }
+        },
+        "required": [
+          "host"
+        ]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "ref",
+          "ref": "#workspaces"
+        }
+      }
+    },
+    "workspaces": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "workspaces": {
+          "type": "array",
+          "items": {
+            "type": "ref",
+            "ref": "#workspace"
+          }
+        }
+      },
+      "required": [
+        "count",
+        "workspaces"
+      ]
+    },
+    "workspace": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "descriptionLong": {
+          "type": "string"
+        },
+        "descriptionShort": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "isOwner": {
+          "type": "boolean"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        },
+        "uri": {
+          "type": "string",
+          "format": "at-uri"
+        }
+      },
+      "required": [
+        "name",
+        "createdAt",
+        "isOwner",
+        "isAdmin",
+        "uri"
+      ]
+    }
+  }
+}

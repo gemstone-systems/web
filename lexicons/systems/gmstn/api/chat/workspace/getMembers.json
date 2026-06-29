@@ -1,0 +1,80 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.api.chat.workspace.getMembers",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "Requires auth. Given an array of workspace AT-uris, returns an array of objects containing the profiles associated with that workspace.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "identifier": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "at-uri"
+            },
+            "maxLength": 20,
+            "description": "Array of workspace AT-uris."
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Optional cursor for pagination."
+          }
+        },
+        "required": [
+          "identifier"
+        ]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "ref",
+          "ref": "#workspaces"
+        }
+      }
+    },
+    "workspaces": {
+      "type": "object",
+      "properties": {
+        "workspacesCount": {
+          "type": "integer"
+        },
+        "workspaces": {
+          "type": "array",
+          "items": {
+            "type": "ref",
+            "ref": "#workspaceWithMembers"
+          }
+        },
+        "cursor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspacesCount",
+        "workspaces"
+      ]
+    },
+    "workspaceWithMembers": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "format": "at-uri"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "ref",
+            "ref": "systems.gmstn.api.actor.getProfile#profileView"
+          }
+        }
+      },
+      "required": [
+        "workspace",
+        "members"
+      ]
+    }
+  }
+}

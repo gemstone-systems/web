@@ -1,0 +1,52 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.chat.channel.membership",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The channel that the membership is describing. Must resolve to a systems.gmstn.chat.channel record on the channel owner's repository."
+          },
+          "invite": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The original invite record for the channel. Must resolve to a systems.gmstn.chat.channel.invite record on the channel owner's repository."
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "rejected",
+              "left"
+            ],
+            "description": "The current membership state."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The timestamp when this membership was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The timestamp when this membership was last updated."
+          }
+        },
+        "required": [
+          "channel",
+          "invite",
+          "state",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "description": "Record declaring the state of a user's channel membership."
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.geode",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "properties": {
+          "serviceEndpoint": {
+            "type": "string",
+            "format": "uri"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The timestamp when this channel was created."
+          },
+          "isPrivate": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "serviceEndpoint",
+          "createdAt",
+          "isPrivate"
+        ]
+      },
+      "description": "Record declaring a Gemstone Geode."
+    }
+  }
+}

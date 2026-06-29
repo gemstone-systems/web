@@ -1,0 +1,107 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.chat.message",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "ref",
+            "ref": "com.atproto.repo.strongRef",
+            "description": "The channel this message was sent to. Must resolve to a systems.gmstn.chat.channel record."
+          },
+          "replyRef": {
+            "type": "ref",
+            "ref": "#replyRef",
+            "description": "(optional) A reference to the message this is replying to."
+          },
+          "messageRef": {
+            "type": "ref",
+            "ref": "#messageRef",
+            "description": "(optional) A reference to another message, such as a quoted or forwarded message."
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 50000,
+            "minLength": 1,
+            "maxGraphemes": 5000,
+            "minGraphemes": 1,
+            "description": "The text content of the message."
+          },
+          "facets": {
+            "type": "array",
+            "items": {
+              "type": "ref",
+              "ref": "systems.gmstn.richtext.facet"
+            },
+            "description": "(optional) Rich text annotations for the message content. Annotations are indexed by UTF-8 byte offsets into the content string."
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "blob",
+              "accept": [
+                "image/png",
+                "image/jpeg",
+                "image/gif",
+                "video/mp4",
+                "audio/mpeg"
+              ],
+              "maxSize": 10000000
+            },
+            "maxLength": 10,
+            "description": "(optional) Attached media files."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The timestamp when this message was created."
+          }
+        },
+        "required": [
+          "channel",
+          "content",
+          "createdAt"
+        ]
+      },
+      "description": "Record declaring a chat message. Written to the sender's repository by the AppView."
+    },
+    "replyRef": {
+      "type": "object",
+      "properties": {
+        "root": {
+          "type": "ref",
+          "ref": "com.atproto.repo.strongRef",
+          "description": "The root message of the thread. Must resolve to a systems.gmstn.chat.message record."
+        },
+        "parent": {
+          "type": "ref",
+          "ref": "com.atproto.repo.strongRef",
+          "description": "The direct parent message being replied to. Must resolve to a systems.gmstn.chat.message record."
+        }
+      },
+      "description": "A reply reference linking to the root and parent messages of a thread.",
+      "required": [
+        "root",
+        "parent"
+      ]
+    },
+    "messageRef": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "ref",
+          "ref": "com.atproto.repo.strongRef",
+          "description": "The referenced message. Must resolve to a systems.gmstn.chat.message record."
+        }
+      },
+      "description": "A reference to another message.",
+      "required": [
+        "message"
+      ]
+    }
+  }
+}

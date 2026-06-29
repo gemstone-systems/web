@@ -1,0 +1,46 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.chat.channel",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "maxGraphemes": 100,
+            "minGraphemes": 1,
+            "description": "The name of the channel. While it can be any string, it is likely to be converted to kebab-case where necessary, particularly in client applications."
+          },
+          "workspace": {
+            "type": "string",
+            "format": "at-uri"
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "maxGraphemes": 200,
+            "minGraphemes": 1,
+            "description": "(optional) The topic of the channel, similar to a sub-description."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The timestamp when this channel was created."
+          }
+        },
+        "required": [
+          "name",
+          "workspace",
+          "createdAt"
+        ]
+      },
+      "description": "Record declaring a conversation channel."
+    }
+  }
+}

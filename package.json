@@ -12,11 +12,14 @@
         "test": "vitest run",
         "lint": "eslint",
         "format": "prettier --check .",
-        "check": "prettier --write . && eslint --fix"
+        "check": "prettier --write . && eslint --fix",
+        "lexicons:sync": "LEXICON_ROOT=${1:-../lexicons} && rm -rf ./lexicons && cp -r $LEXICON_ROOT/lexicons ./lexicons",
+        "lexicons:generate": "lex-cli generate"
     },
     "dependencies": {
         "@atcute/atproto": "^4.0.0",
         "@atcute/client": "^5.0.0",
+        "@atcute/lexicons": "^2.0.0",
         "@atproto/oauth-client-browser": "^0.3.42",
         "@fontsource-variable/hanken-grotesk": "^5.2.8",
         "@fontsource/amiri": "^5.2.8",
@@ -39,6 +42,7 @@
         "zod": "^4.3.6"
     },
     "devDependencies": {
+        "@atcute/lex-cli": "^3.0.1",
         "@eslint/js": "^10.0.1",
         "@rolldown/plugin-babel": "^0.2.3",
         "@tailwindcss/typography": "^0.5.16",

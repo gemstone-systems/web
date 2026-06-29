@@ -1,0 +1,92 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.api.actor.getProfile",
+  "defs": {
+    "main": {
+      "type": "query",
+      "description": "Get detailed profile view of an actor. Does not require auth, but contains more information if the requester is authenticated.",
+      "parameters": {
+        "type": "params",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "format": "at-identifier",
+            "description": "Handle or DID of the account to fetch profile of."
+          }
+        },
+        "required": [
+          "identifier"
+        ]
+      },
+      "output": {
+        "encoding": "application/json",
+        "schema": {
+          "type": "ref",
+          "ref": "#profileView"
+        }
+      }
+    },
+    "profileView": {
+      "type": "object",
+      "properties": {
+        "did": {
+          "type": "string",
+          "format": "did"
+        },
+        "handle": {
+          "type": "string",
+          "format": "handle"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 640,
+          "maxGraphemes": 64
+        },
+        "bio": {
+          "type": "string",
+          "maxLength": 2560,
+          "maxGraphemes": 256
+        },
+        "pronouns": {
+          "type": "string",
+          "maxLength": 200,
+          "maxGraphemes": 20
+        },
+        "website": {
+          "type": "string",
+          "format": "uri"
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the avatar image."
+        },
+        "banner": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the banner image."
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "ref",
+            "ref": "com.atproto.label.defs#label"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "datetime"
+        },
+        "indexedAt": {
+          "type": "string",
+          "format": "datetime",
+          "description": "Timestamp of when Prism indexed this profile."
+        }
+      },
+      "required": [
+        "did",
+        "handle"
+      ]
+    }
+  }
+}

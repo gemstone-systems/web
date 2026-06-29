@@ -1,0 +1,97 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.richtext.facet",
+  "defs": {
+    "main": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "ref",
+          "ref": "#byteSlice",
+          "description": "The byte range this facet applies to."
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "union",
+            "refs": [
+              "#mention",
+              "#link",
+              "#tag"
+            ],
+            "closed": true,
+            "description": "A feature applied to a byte range of text."
+          },
+          "description": "The features applied to this byte range."
+        }
+      },
+      "description": "A rich text annotation describing a range of text content.",
+      "required": [
+        "index",
+        "features"
+      ]
+    },
+    "byteSlice": {
+      "type": "object",
+      "properties": {
+        "byteStart": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The inclusive start byte offset."
+        },
+        "byteEnd": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The exclusive end byte offset."
+        }
+      },
+      "description": "A byte range within text content. byteStart is inclusive, byteEnd is exclusive.",
+      "required": [
+        "byteStart",
+        "byteEnd"
+      ]
+    },
+    "mention": {
+      "type": "object",
+      "properties": {
+        "did": {
+          "type": "string",
+          "format": "did",
+          "description": "The DID of the mentioned user."
+        }
+      },
+      "description": "A mention of another user.",
+      "required": [
+        "did"
+      ]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "The URI being linked to."
+        }
+      },
+      "description": "A hyperlink.",
+      "required": [
+        "uri"
+      ]
+    },
+    "tag": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "maxLength": 6400,
+          "maxGraphemes": 640,
+          "description": "The tag value (without the leading #)."
+        }
+      },
+      "description": "A hashtag or topic tag.",
+      "required": [
+        "tag"
+      ]
+    }
+  }
+}

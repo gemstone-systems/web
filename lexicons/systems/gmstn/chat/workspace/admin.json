@@ -1,0 +1,27 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.chat.workspace.admin",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "format": "did"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          }
+        },
+        "required": [
+          "subject",
+          "createdAt"
+        ]
+      }
+    }
+  }
+}

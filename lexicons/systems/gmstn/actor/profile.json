@@ -1,0 +1,66 @@
+{
+  "lexicon": 1,
+  "id": "systems.gmstn.actor.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "literal:self",
+      "record": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "maxLength": 640,
+            "maxGraphemes": 64
+          },
+          "bio": {
+            "type": "string",
+            "maxLength": 2560,
+            "maxGraphemes": 256,
+            "description": "Free-form profile description text."
+          },
+          "pronouns": {
+            "type": "string",
+            "maxLength": 200,
+            "maxGraphemes": 20,
+            "description": "Free-form pronouns text."
+          },
+          "website": {
+            "type": "string",
+            "format": "uri"
+          },
+          "avatar": {
+            "type": "blob",
+            "accept": [
+              "image/png",
+              "image/jpeg"
+            ],
+            "maxSize": 1000000,
+            "description": "Small image to be displayed next to posts from account. AKA, 'profile picture'"
+          },
+          "banner": {
+            "type": "blob",
+            "accept": [
+              "image/png",
+              "image/jpeg"
+            ],
+            "maxSize": 1000000,
+            "description": "Larger horizontal image to display behind profile view."
+          },
+          "labels": {
+            "type": "union",
+            "refs": [
+              "com.atproto.label.defs#selfLabels"
+            ],
+            "description": "Self-label values, specific to the Gemstone application, on the overall account."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          }
+        }
+      },
+      "description": "A declaration of a Gemstone account profile."
+    }
+  }
+}
